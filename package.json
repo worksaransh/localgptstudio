@@ -1,0 +1,25 @@
+{
+  "name": "ai-operating-system",
+  "private": true,
+  "description": "Provider-agnostic AI Operating System — LibreChat + OpenHands + RAG + MCP",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "build:chat": "cd apps/chat && npm run build",
+    "build:packages": "turbo build --filter=@localgpt/*",
+    "start:chat": "cd apps/chat && node api/server/index.js",
+    "start:openhands": "docker run -it --rm -p 8000:8000 ghcr.io/openhands/agent-canvas:latest",
+    "start:mongodb": "mongod --dbpath ./data/mongodb",
+    "start:all": "concurrently \"npm run start:mongodb\" \"npm run start:chat\"",
+    "setup": "cd apps/chat && cp -n .env.example .env && npm install",
+    "lint": "turbo lint"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "concurrently": "^9.0.0"
+  }
+}

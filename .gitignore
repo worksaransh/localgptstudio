@@ -13,3 +13,6 @@ __pycache__/
 chroma_db/
 .DS_Store
 Thumbs.db
+dist/
+.turbo/
+data/

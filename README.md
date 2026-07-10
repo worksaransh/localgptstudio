@@ -260,6 +260,41 @@ npm run lint    # Lint check
 
 ---
 
+## Monorepo Structure
+
+The AI OS uses a monorepo layout (Turborepo):
+
+```
+D:\bot/
+├── apps/
+│   └── chat/                    # LibreChat fork (multi-provider chat shell)
+│       ├── librechat.yaml       # Provider config (Ollama, OpenAI, Anthropic, Groq)
+│       └── api/server/routes/agents/openhands.js  # OpenHands adapter route
+├── packages/
+│   ├── openhands-adapter/       # @localgpt/openhands-adapter — OpenHands REST client
+│   ├── rag-pipeline/            # @localgpt/rag-pipeline — chunking, embedding, pgvector
+│   ├── mastra-agents/           # @localgpt/mastra-agents — multi-agent orchestration
+│   └── mcp-servers/             # @localgpt/mcp-servers — filesystem, KB, GitHub MCP
+├── backend/                     # LocalGPT Studio FastAPI backend
+├── frontend/                    # LocalGPT Studio Next.js frontend
+├── BUILD.md                     # Full build guide for all phases
+├── turbo.json
+└── package.json
+```
+
+## Build
+
+See [`BUILD.md`](./BUILD.md) for the full build guide covering all 7 phases:
+1. **LibreChat** — fork, configure providers, run chat shell
+2. **OpenHands** — Docker agent server, adapter route
+3. **RAG Pipeline** — document ingestion, pgvector, hybrid search
+4. **Mastra Agents** — orchestration, workflow engine
+5. **MCP Connectors** — filesystem, KB, GitHub servers
+6. **Auth & Billing** — Better Auth, Razorpay/Stripe
+7. **Desktop** — Tauri wrapper (if needed)
+
+---
+
 ## License
 
 MIT
