@@ -1,0 +1,15 @@
+node_modules/
+.env
+uploads/
+*.log
+*.err
+__pycache__/
+*.pyc
+*.pyo
+*.db
+*.db-shm
+*.db-wal
+.next/
+chroma_db/
+.DS_Store
+Thumbs.db
